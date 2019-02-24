@@ -4,4 +4,6 @@ apply plugin: 'kotlin-kapt'
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     api deps.kotlin.stdlib.jdk
+    api deps.dagger.dagger
+    api deps.rxjava
 }

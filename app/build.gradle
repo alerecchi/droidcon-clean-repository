@@ -33,7 +33,6 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation(project(":data"))
-    implementation deps.kotlin.stdlib.jdk
     implementation deps.androidx.appcompat
     implementation deps.androidx.corektx
     kapt deps.androidx.lifecycle.compiler
@@ -48,20 +47,13 @@ dependencies {
     implementation deps.androidx.recyclerview
     implementation deps.androidx.transition
     implementation deps.material
-    kapt deps.dagger.compiler
-    kapt deps.dagger.androidprocessor
-    implementation deps.dagger.dagger
-    implementation deps.dagger.android
-    implementation deps.dagger.androidsupport
-    implementation deps.retrofit.retrofit
-    implementation deps.retrofit.convertergson
-    implementation deps.retrofit.adapterrxjava2
-    implementation deps.gson
-    implementation deps.okhttp
-    implementation deps.rxjava
     implementation deps.rxandroid
     kapt deps.glide.compiler
     implementation deps.glide.glide
+    kapt deps.dagger.compiler
+    kapt deps.dagger.androidprocessor
+    implementation deps.dagger.android
+    implementation deps.dagger.androidsupport
 
     testImplementation deps.junit
     androidTestImplementation deps.androidx.test.runner

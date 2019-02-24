@@ -1,8 +1,7 @@
 apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
-
+apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 28
@@ -34,7 +33,11 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     api(project(":domain"))
-
+    api deps.retrofit.retrofit
+    api deps.retrofit.convertergson
+    api deps.retrofit.adapterrxjava2
+    api deps.gson
+    api deps.okhttp
     kapt deps.androidx.room.compiler
     implementation deps.androidx.room.runtime
     implementation deps.androidx.room.rxjava2
