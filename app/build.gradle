@@ -1,6 +1,11 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
+
+androidExtensions {
+    experimental = true
+}
 
 android {
     compileSdkVersion 28
@@ -12,6 +17,10 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -22,10 +31,40 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.0.2'
-    implementation 'androidx.core:core-ktx:1.0.1'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    implementation deps.kotlin.stdlib.jdk
+    implementation deps.androidx.appcompat
+    implementation deps.androidx.corektx
+    kapt deps.androidx.lifecycle.compiler
+    implementation deps.androidx.lifecycle.common
+    implementation deps.androidx.lifecycle.extensions
+    implementation deps.androidx.lifecycle.livedata
+    implementation deps.androidx.lifecycle.viewmodel
+    implementation deps.androidx.paging.runtime
+    implementation deps.androidx.paging.rxjava2
+    kapt deps.androidx.room.compiler
+    implementation deps.androidx.room.runtime
+    implementation deps.androidx.room.rxjava2
+    implementation deps.androidx.constraintlayout
+    implementation deps.androidx.coordinatorlayout
+    implementation deps.androidx.recyclerview
+    implementation deps.androidx.transition
+    implementation deps.material
+    kapt deps.dagger.compiler
+    kapt deps.dagger.androidprocessor
+    implementation deps.dagger.dagger
+    implementation deps.dagger.android
+    implementation deps.dagger.androidsupport
+    implementation deps.retrofit.retrofit
+    implementation deps.retrofit.convertergson
+    implementation deps.retrofit.adapterrxjava2
+    implementation deps.gson
+    implementation deps.okhttp
+    implementation deps.rxjava
+    implementation deps.rxandroid
+    kapt deps.glide.compiler
+    implementation deps.glide.glide
+
+    testImplementation deps.junit
+    androidTestImplementation deps.androidx.test.runner
+    androidTestImplementation deps.androidx.test.espresso
 }
