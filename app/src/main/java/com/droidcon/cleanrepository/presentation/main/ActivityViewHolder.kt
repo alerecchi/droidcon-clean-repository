@@ -3,7 +3,7 @@ package com.droidcon.cleanrepository.presentation.main
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.droidcon.data.UIFeedItem
+import com.droidcon.cleanrepository.model.UIFeedItem
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.list_item.*
 

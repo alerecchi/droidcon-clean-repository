@@ -1,4 +1,4 @@
-package com.droidcon.data
+package com.droidcon.cleanrepository.model
 
 data class UIFeedItem(
     val imageUrl: String,

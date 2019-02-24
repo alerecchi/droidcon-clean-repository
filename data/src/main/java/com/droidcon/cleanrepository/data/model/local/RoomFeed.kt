@@ -1,4 +1,4 @@
-package com.droidcon
+package com.droidcon.cleanrepository.data.model.local
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

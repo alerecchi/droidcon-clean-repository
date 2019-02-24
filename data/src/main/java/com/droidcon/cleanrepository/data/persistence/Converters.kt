@@ -1,4 +1,4 @@
-package com.droidcon.persistence
+package com.droidcon.cleanrepository.data.persistence
 
 import androidx.room.TypeConverter
 import java.util.*

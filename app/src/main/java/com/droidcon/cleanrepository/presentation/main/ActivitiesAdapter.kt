@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.droidcon.cleanrepository.R
-import com.droidcon.data.UIFeedItem
+import com.droidcon.cleanrepository.model.UIFeedItem
 
 class ActivitiesAdapter: ListAdapter<UIFeedItem, ActivityViewHolder>(ItemCallBack()) {
 
