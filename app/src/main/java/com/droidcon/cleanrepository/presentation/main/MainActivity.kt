@@ -2,9 +2,9 @@ package com.droidcon.cleanrepository.presentation.main
 
 import android.os.Bundle
 import com.droidcon.cleanrepository.R
-import com.droidcon.cleanrepository.presentation.DaggerActivity
+import com.droidcon.cleanrepository.presentation.BaseActivity
 
-class MainActivity : DaggerActivity() {
+class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

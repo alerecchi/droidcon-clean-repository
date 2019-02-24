@@ -27,6 +27,5 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-
-    implementation deps.kotlin.stdlib.jdk
+    api(project(":domain"))
 }

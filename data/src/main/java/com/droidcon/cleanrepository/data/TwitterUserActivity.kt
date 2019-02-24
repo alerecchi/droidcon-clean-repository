@@ -1,4 +1,4 @@
-package com.droidcon.data
+package com.droidcon.cleanrepository.data
 
 data class TwitterUserActivity(
     val created_at: String?,

@@ -1,7 +1,7 @@
 package com.droidcon.cleanrepository.di.module
 
-import com.droidcon.cleanrepository.data.GithubService
-import com.droidcon.cleanrepository.data.TwitterService
+import com.droidcon.cleanrepository.data.service.GithubService
+import com.droidcon.cleanrepository.data.service.TwitterService
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit

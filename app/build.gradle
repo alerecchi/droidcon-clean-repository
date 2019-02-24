@@ -31,6 +31,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation(project(":data"))
     implementation deps.kotlin.stdlib.jdk
     implementation deps.androidx.appcompat
     implementation deps.androidx.corektx

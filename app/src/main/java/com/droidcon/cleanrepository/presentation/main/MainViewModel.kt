@@ -1,7 +1,7 @@
 package com.droidcon.cleanrepository.presentation.main
 
-import com.droidcon.cleanrepository.data.GithubService
-import com.droidcon.cleanrepository.data.TwitterService
+import com.droidcon.cleanrepository.data.service.GithubService
+import com.droidcon.cleanrepository.data.service.TwitterService
 import com.droidcon.cleanrepository.presentation.LifecycleViewModel
 import javax.inject.Inject
 

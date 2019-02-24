@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.droidcon.cleanrepository.R
 import com.droidcon.cleanrepository.kx.viewModel
-import com.droidcon.cleanrepository.presentation.DaggerFragment
+import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
 class MainFragment : DaggerFragment() {
