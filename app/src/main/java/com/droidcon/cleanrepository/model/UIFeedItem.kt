@@ -5,5 +5,7 @@ data class UIFeedItem(
     val name: String,
     val activity: String,
     val date: String,
-    val logo: String //TODO: enum
-)
+    val source: Source
+) {
+    enum class Source { TWITTER, GITHUB }
+}
