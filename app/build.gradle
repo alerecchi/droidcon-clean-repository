@@ -17,6 +17,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -42,9 +43,6 @@ dependencies {
     implementation deps.androidx.lifecycle.viewmodel
     implementation deps.androidx.paging.runtime
     implementation deps.androidx.paging.rxjava2
-    kapt deps.androidx.room.compiler
-    implementation deps.androidx.room.runtime
-    implementation deps.androidx.room.rxjava2
     implementation deps.androidx.constraintlayout
     implementation deps.androidx.coordinatorlayout
     implementation deps.androidx.recyclerview

@@ -1,4 +1,4 @@
-package com.droidcon.cleanrepository.data
+package com.droidcon
 
 data class TwitterUserTimelineItem(
     val created_at: String?,

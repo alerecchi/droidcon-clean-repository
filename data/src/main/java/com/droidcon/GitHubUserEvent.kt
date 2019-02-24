@@ -1,4 +1,4 @@
-package com.droidcon.cleanrepository.data
+package com.droidcon
 
 data class GitHubUserEvent(
     val type: String?,
