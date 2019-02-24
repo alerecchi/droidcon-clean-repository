@@ -1,6 +1,6 @@
 package com.droidcon.cleanrepository.data
 
-data class TwitterUserActivity(
+data class TwitterUserTimelineItem(
     val created_at: String?,
     val text: String?,
     val user: User
