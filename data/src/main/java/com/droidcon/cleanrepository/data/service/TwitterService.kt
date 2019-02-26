@@ -1,3 +1,17 @@
 package com.droidcon.cleanrepository.data.service
 
-interface TwitterService
+import com.droidcon.cleanrepository.data.model.remote.TwitterUserTimelineItem
+import io.reactivex.Single
+import retrofit2.http.GET
+import retrofit2.http.Query
+
+interface TwitterService {
+
+    @GET("statuses/user_timeline.json")
+    fun getUserTimeline(
+        @Query("screen_name") name: String? = null,
+        @Query("count") totalResults: Int? = null,
+        @Query("max_id") resultFromId: Long? = null
+    ): Single<MutableList<TwitterUserTimelineItem>>
+
+}

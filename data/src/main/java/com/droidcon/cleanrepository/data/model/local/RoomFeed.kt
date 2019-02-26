@@ -7,11 +7,15 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "feed")
 class RoomFeed(
     @PrimaryKey(autoGenerate = true)
-    val feedId: Int,
+    val feedId: Int = 0,
+    @ColumnInfo(name = "image")
+    val feedImage: String,
     @ColumnInfo(name = "name")
     val feedName: String,
     @ColumnInfo(name = "content")
-    val feedContent: String?,
+    val feedContent: String,
     @ColumnInfo(name = "date")
-    val feedDate: Long
+    val feedDate: Long?,
+    @ColumnInfo(name = "source")
+    val feedSource: String
 )
