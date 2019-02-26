@@ -2,7 +2,7 @@ package com.droidcon.cleanrepository.di
 
 import com.droidcon.cleanrepository.JakebookApplication
 import com.droidcon.cleanrepository.di.module.ActivityModule
-import com.droidcon.cleanrepository.di.module.DataSourceModule
+import com.droidcon.cleanrepository.di.module.DataModule
 import com.droidcon.cleanrepository.di.module.NetworkModule
 import com.droidcon.cleanrepository.di.module.fragment.FragmentModule
 import com.droidcon.cleanrepository.di.module.ViewModelModule
@@ -20,7 +20,7 @@ import javax.inject.Singleton
         FragmentModule::class,
         ViewModelModule::class,
         NetworkModule::class,
-        DataSourceModule::class]
+        DataModule::class]
 )
 interface AppComponent : AndroidInjector<JakebookApplication> {
 

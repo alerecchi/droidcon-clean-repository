@@ -21,10 +21,13 @@ class NetworkModule {
     @Provides
     internal fun providesOkHttp() = OkHttpClient.Builder().build()
 
+    @Singleton
     @Provides
     internal fun providesRetrofitBuilder(client: OkHttpClient, gson: Gson) = Retrofit.Builder()
         .client(client)
         .addConverterFactory(GsonConverterFactory.create(gson))
         .addCallAdapterFactory(RxJava2CallAdapterFactory.createAsync())
+        .baseUrl("https://dummy.com/")
+        .build()
 
 }

@@ -21,7 +21,7 @@ class ActivityViewHolder(override val containerView: View) : RecyclerView.ViewHo
         )
 
         name.text = model.name
-        activity.text = model.activity //TODO:change activity into something else
+        content.text = model.content
         date.text = model.date
     }
 }

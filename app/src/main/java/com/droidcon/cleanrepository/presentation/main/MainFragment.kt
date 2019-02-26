@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.droidcon.cleanrepository.R
 import com.droidcon.cleanrepository.kx.viewModel
@@ -37,6 +38,10 @@ class MainFragment : DaggerFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         mainViewModel = viewModel(viewModelFactory)
+        mainViewModel.feedList.observe(this) {
+            adapter.submitList(it)
+        }
+        mainViewModel.getFeeds()
     }
 
 }

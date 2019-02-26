@@ -6,7 +6,10 @@ import com.droidcon.cleanrepository.domain.repository.Repository
 import javax.inject.Inject
 
 class RepositoryImpl @Inject constructor(
-    twitterRemoteDataSource: TwitterRemoteDataSource,
-    gitHubRemoteDataSource: GitHubRemoteDataSource
+    val twitterRemoteDataSource: TwitterRemoteDataSource,
+    val gitHubRemoteDataSource: GitHubRemoteDataSource
 ) : Repository {
+
+    override fun getTwitterFeed() = twitterRemoteDataSource.getInitialJakeTimeline()
+
 }
