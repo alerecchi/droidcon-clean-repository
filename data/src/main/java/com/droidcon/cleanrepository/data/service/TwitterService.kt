@@ -11,10 +11,14 @@ interface TwitterService {
 
     @GET("https://api.twitter.com/1.1/statuses/user_timeline.json")
     fun getUserTimeline(
-        @Header("Authorization") auth: String? = null,
-        @Query("screen_name") name: String? = null,
-        @Query("count") totalResults: Int? = null,
-        @Query("max_id") resultFromId: Long? = null
-    ): Single<MutableList<TwitterUserTimelineItem>>
+        @Header("Authorization")
+        auth: String? = null,
+        @Query("screen_name")
+        name: String? = null,
+        @Query("count")
+        totalResults: Int? = null,
+        @Query("max_id")
+        resultFromId: Long? = null
+    ): Single<List<TwitterUserTimelineItem>>
 
 }

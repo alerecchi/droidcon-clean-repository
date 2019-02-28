@@ -15,7 +15,6 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     compileOptions {
@@ -55,8 +54,4 @@ dependencies {
     kapt deps.dagger.androidprocessor
     implementation deps.dagger.android
     implementation deps.dagger.androidsupport
-
-    testImplementation deps.junit
-    androidTestImplementation deps.androidx.test.runner
-    androidTestImplementation deps.androidx.test.espresso
 }

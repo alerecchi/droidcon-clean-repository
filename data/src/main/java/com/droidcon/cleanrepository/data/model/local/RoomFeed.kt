@@ -15,7 +15,7 @@ class RoomFeed(
     @ColumnInfo(name = "content")
     val feedContent: String,
     @ColumnInfo(name = "date")
-    val feedDate: Long?,
+    val feedDate: Long,
     @ColumnInfo(name = "source")
     val feedSource: String
 )

@@ -6,7 +6,7 @@ class Feed(
     val image: String,
     val name: String,
     val content: String,
-    val date: Date?,
+    val date: Date,
     val source: FeedSource
 )
 

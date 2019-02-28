@@ -1,11 +1,8 @@
 package com.droidcon.cleanrepository.di
 
 import com.droidcon.cleanrepository.JakebookApplication
-import com.droidcon.cleanrepository.di.module.ActivityModule
-import com.droidcon.cleanrepository.di.module.DataModule
-import com.droidcon.cleanrepository.di.module.NetworkModule
+import com.droidcon.cleanrepository.di.module.*
 import com.droidcon.cleanrepository.di.module.fragment.FragmentModule
-import com.droidcon.cleanrepository.di.module.ViewModelModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector
@@ -17,6 +14,7 @@ import javax.inject.Singleton
     modules = [
         AndroidSupportInjectionModule::class,
         ActivityModule::class,
+        ApplicationModule::class,
         FragmentModule::class,
         ViewModelModule::class,
         NetworkModule::class,

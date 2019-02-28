@@ -1,3 +1,3 @@
 /build
 #Room schema
-/schemas/com.hm.goe.base.persistence.AppDatabase/*
+/schemas/com.droidcon.cleanrepository.data.persistence.AppDatabase/*

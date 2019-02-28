@@ -8,11 +8,14 @@ import io.reactivex.Flowable
 interface RoomFeedDao {
 
     @Query("SELECT * FROM feed ORDER BY date desc")
-    fun getFeed(): Flowable<MutableList<RoomFeed>>
+    fun getFeed(): Flowable<List<RoomFeed>>
 
     @Delete
-    fun deleteMessage(feed: RoomFeed)
+    fun deleteFeed(feed: RoomFeed)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertMessage(feed: RoomFeed)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    fun insertFeed(feed: RoomFeed)
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    fun insertFeedList(data: List<RoomFeed>?)
 }

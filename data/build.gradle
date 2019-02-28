@@ -39,6 +39,6 @@ dependencies {
     api deps.gson
     api deps.okhttp
     kapt deps.androidx.room.compiler
-    implementation deps.androidx.room.runtime
-    implementation deps.androidx.room.rxjava2
+    api deps.androidx.room.runtime
+    api deps.androidx.room.rxjava2
 }
