@@ -12,7 +12,7 @@ interface TwitterService {
     @GET("https://api.twitter.com/1.1/statuses/user_timeline.json")
     fun getUserTimeline(
         @Header("Authorization")
-        auth: String? = null,
+        auth: String,
         @Query("screen_name")
         name: String? = null,
         @Query("count")

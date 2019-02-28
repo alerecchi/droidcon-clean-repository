@@ -10,7 +10,7 @@ fun Feed.asUIModel() = UIFeedItem(
     imageUrl = image,
     name = name,
     content = content,
-    date = date?.let { UI_DATE_FORMAT.format(it) } ?: "",
+    date = date.let { UI_DATE_FORMAT.format(it) } ?: "",
     source = if (source == TWITTER) UIFeedItem.Source.TWITTER else UIFeedItem.Source.GITHUB
 )
 

@@ -20,6 +20,10 @@ android {
             }
         }
 
+        //You should put your api key and secret under your local.properties file, using the following names
+        Properties properties = new Properties()
+        properties.load(project.rootProject.file('local.properties').newDataInputStream())
+        buildConfigField "String", "TWITTER_BEARER_TOKEN", "\"${properties.getProperty('twitterBearerToken')}\""
     }
 
     buildTypes {

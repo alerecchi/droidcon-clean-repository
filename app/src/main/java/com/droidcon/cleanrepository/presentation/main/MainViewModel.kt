@@ -13,9 +13,14 @@ class MainViewModel @Inject constructor(
     private val repository: Repository
 ) : LifecycleViewModel() {
 
+    init {
+        repository.bindToLifecycle(this)
+        getFeeds()
+    }
+
     val feedList = MutableLiveData<List<UIFeedItem>>()
 
-    fun getFeeds() {
+    private fun getFeeds() {
         repository.getFeed()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
@@ -28,8 +33,4 @@ class MainViewModel @Inject constructor(
             .bindToLifecycle(this)
     }
 
-    override fun onCleared() {
-        super.onCleared()
-        repository.clearDisposable()
-    }
 }

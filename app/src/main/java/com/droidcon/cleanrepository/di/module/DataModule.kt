@@ -42,6 +42,10 @@ class DataModule {
         twitterRemoteDataSource: TwitterRemoteDataSource,
         gitHubRemoteDataSource: GitHubRemoteDataSource,
         localDataSource: LocalDataSource
-    ): Repository = RepositoryImpl(twitterRemoteDataSource, gitHubRemoteDataSource, localDataSource)
+    ): Repository = RepositoryImpl(
+        twitterRemoteDataSource,
+        gitHubRemoteDataSource,
+        localDataSource
+    )
 
 }

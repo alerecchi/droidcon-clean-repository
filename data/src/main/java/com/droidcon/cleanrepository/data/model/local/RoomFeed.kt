@@ -6,8 +6,8 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "feed")
 class RoomFeed(
-    @PrimaryKey(autoGenerate = true)
-    val feedId: Int = 0,
+    @PrimaryKey
+    val feedId: String,
     @ColumnInfo(name = "image")
     val feedImage: String,
     @ColumnInfo(name = "name")

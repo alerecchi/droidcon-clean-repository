@@ -12,6 +12,7 @@ val TWITTER_DATE_FORMAT = SimpleDateFormat("EEE MMM dd HH:mm:ss Z yyyy", Locale.
 val GITHUB_DATE_FORMAT = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.ENGLISH)
 
 fun TwitterUserTimelineItem.asDomainModel() = Feed(
+    id = "twitter_$id",
     image = user?.profile_image_url_https ?: "",
     name = user?.screen_name ?: "",
     content = text ?: "",
@@ -20,6 +21,7 @@ fun TwitterUserTimelineItem.asDomainModel() = Feed(
 )
 
 fun GitHubUserEvent.asDomainModel() = Feed(
+    id = "github_$id",
     image = actor?.avatar_url ?: "",
     name = actor?.display_login ?: "",
     content = "$type on ${repo?.name}",
@@ -27,8 +29,8 @@ fun GitHubUserEvent.asDomainModel() = Feed(
     source = GITHUB
 )
 
-
 fun RoomFeed.asDomainModel() = Feed(
+    id = feedId,
     image = feedImage,
     name = feedName,
     content = feedContent,
@@ -37,6 +39,7 @@ fun RoomFeed.asDomainModel() = Feed(
 )
 
 fun Feed.asLocalDataModel() = RoomFeed(
+    feedId = id,
     feedImage = image,
     feedName = name,
     feedContent = content,

@@ -41,7 +41,6 @@ class MainFragment : DaggerFragment() {
         mainViewModel.feedList.observe(this) {
             adapter.submitList(it)
         }
-        mainViewModel.getFeeds()
     }
 
 }

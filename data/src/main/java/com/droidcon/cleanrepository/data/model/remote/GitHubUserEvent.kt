@@ -1,6 +1,7 @@
 package com.droidcon.cleanrepository.data.model.remote
 
 data class GitHubUserEvent(
+    val id: Long,
     val type: String?,
     val actor: Actor?,
     val repo: Repo?,

@@ -35,7 +35,6 @@ dependencies {
     implementation deps.androidx.appcompat
     implementation deps.androidx.corektx
     kapt deps.androidx.lifecycle.compiler
-    implementation deps.androidx.lifecycle.common
     implementation deps.androidx.lifecycle.extensions
     implementation deps.androidx.lifecycle.livedata
     implementation deps.androidx.lifecycle.livedataktx

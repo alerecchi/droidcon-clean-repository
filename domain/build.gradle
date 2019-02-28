@@ -6,4 +6,5 @@ dependencies {
     api deps.kotlin.stdlib.jdk
     api deps.dagger.dagger
     api deps.rxjava
+    api deps.androidx.lifecycle.common
 }
