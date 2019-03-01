@@ -14,4 +14,4 @@ fun Feed.asUIModel() = UIFeedItem(
     source = if (source == TWITTER) UIFeedItem.Source.TWITTER else UIFeedItem.Source.GITHUB
 )
 
-val UI_DATE_FORMAT = SimpleDateFormat("yyyy/MM/dd 'at' HH:mm:ss", Locale.ENGLISH)
+val UI_DATE_FORMAT = SimpleDateFormat("yyyy/MM/dd 'at' HH:mm:ss", Locale.ITALY)

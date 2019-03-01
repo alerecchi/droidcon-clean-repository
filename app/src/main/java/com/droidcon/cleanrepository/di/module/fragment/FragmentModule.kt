@@ -8,7 +8,6 @@ import dagger.android.ContributesAndroidInjector
 @Module
 abstract class FragmentModule {
 
-
     @FragmentScoped
     @ContributesAndroidInjector
     abstract fun mainFragment(): MainFragment

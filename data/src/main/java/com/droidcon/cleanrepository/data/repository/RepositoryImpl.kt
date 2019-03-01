@@ -1,35 +1,39 @@
 package com.droidcon.cleanrepository.data.repository
 
-import androidx.lifecycle.LifecycleOwner
 import com.droidcon.cleanrepository.data.datasource.GitHubRemoteDataSource
 import com.droidcon.cleanrepository.data.datasource.LocalDataSource
 import com.droidcon.cleanrepository.data.datasource.TwitterRemoteDataSource
 import com.droidcon.cleanrepository.data.kx.bindToLifecycle
+import com.droidcon.cleanrepository.domain.LifecycleBinder
+import com.droidcon.cleanrepository.domain.SimpleLifecycleBinder
 import com.droidcon.cleanrepository.domain.model.Feed
 import com.droidcon.cleanrepository.domain.repository.Repository
 import io.reactivex.Flowable
-import io.reactivex.schedulers.Schedulers
+import io.reactivex.Single
+import io.reactivex.functions.BiFunction
 import javax.inject.Inject
 
 class RepositoryImpl @Inject constructor(
     private val twitterRemoteDataSource: TwitterRemoteDataSource,
     private val gitHubRemoteDataSource: GitHubRemoteDataSource,
     private val localDataSource: LocalDataSource
-) : Repository {
-
-    lateinit var lifecycleOwner: LifecycleOwner
+) : Repository, LifecycleBinder by SimpleLifecycleBinder() {
 
     override fun getFeed(): Flowable<List<Feed>> {
-        twitterRemoteDataSource.getJakeTimeline()
+        Single.zip(
+            twitterRemoteDataSource.getJakeTimeline(),
+            gitHubRemoteDataSource.getPage(),
+            BiFunction<List<Feed>, List<Feed>, List<Feed>> { twitterFeeds, githubFeeds ->
+                twitterFeeds
+                    .plus(githubFeeds)
+                    .sortedBy { it.date }
+            })
             .subscribe({
                 localDataSource.insertFeeds(it)
             }, {
-
-            }).bindToLifecycle(lifecycleOwner)
+                it.printStackTrace()
+            }).bindToLifecycle(this)
         return localDataSource.getFeed()
     }
 
-    override fun bindToLifecycle(lifecycleOwner: LifecycleOwner) {
-        this.lifecycleOwner = lifecycleOwner
-    }
 }

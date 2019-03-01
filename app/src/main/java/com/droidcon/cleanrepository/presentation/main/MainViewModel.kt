@@ -14,7 +14,7 @@ class MainViewModel @Inject constructor(
 ) : LifecycleViewModel() {
 
     init {
-        repository.bindToLifecycle(this)
+        repository.bindTo(this)
         getFeeds()
     }
 
