@@ -1,8 +1,10 @@
 package com.droidcon.cleanrepository.kx
 
-import androidx.lifecycle.*
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Lifecycle.Event.*
 import androidx.lifecycle.Lifecycle.State.*
+import androidx.lifecycle.LifecycleEventObserver
+import androidx.lifecycle.LifecycleOwner
 import io.reactivex.disposables.Disposable
 
 fun Disposable.bindToLifecycle(lifecycleOwner: LifecycleOwner): Disposable {
@@ -25,7 +27,6 @@ private fun shouldDispose(subscriptionState: Lifecycle.State, stateEvent: Lifecy
         ON_DESTROY -> true
         else -> false
     }
-
 
 
 

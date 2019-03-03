@@ -4,10 +4,8 @@ import com.droidcon.cleanrepository.data.datasource.GitHubRemoteDataSource
 import com.droidcon.cleanrepository.data.datasource.LocalDataSource
 import com.droidcon.cleanrepository.data.datasource.TwitterRemoteDataSource
 import com.droidcon.cleanrepository.data.kx.bindToLifecycle
-import com.droidcon.cleanrepository.domain.LifecycleBinder
-import com.droidcon.cleanrepository.domain.SimpleLifecycleBinder
 import com.droidcon.cleanrepository.domain.model.Feed
-import com.droidcon.cleanrepository.domain.repository.Repository
+import com.droidcon.cleanrepository.domain.repository.FeedRepository
 import io.reactivex.Flowable
 import io.reactivex.Single
 import io.reactivex.functions.BiFunction
@@ -17,9 +15,14 @@ class RepositoryImpl @Inject constructor(
     private val twitterRemoteDataSource: TwitterRemoteDataSource,
     private val gitHubRemoteDataSource: GitHubRemoteDataSource,
     private val localDataSource: LocalDataSource
-) : Repository, LifecycleBinder by SimpleLifecycleBinder() {
+) : FeedRepository() {
 
     override fun getFeed(): Flowable<List<Feed>> {
+        refreshFeed()
+        return localDataSource.getFeed()
+    }
+
+    override fun refreshFeed() {
         Single.zip(
             twitterRemoteDataSource.getJakeTimeline(),
             gitHubRemoteDataSource.getPage(),
@@ -33,7 +36,5 @@ class RepositoryImpl @Inject constructor(
             }, {
                 it.printStackTrace()
             }).bindToLifecycle(this)
-        return localDataSource.getFeed()
     }
-
 }

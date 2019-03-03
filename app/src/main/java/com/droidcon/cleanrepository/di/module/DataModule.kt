@@ -9,7 +9,7 @@ import com.droidcon.cleanrepository.data.persistence.AppDatabase
 import com.droidcon.cleanrepository.data.repository.RepositoryImpl
 import com.droidcon.cleanrepository.data.service.GithubService
 import com.droidcon.cleanrepository.data.service.TwitterService
-import com.droidcon.cleanrepository.domain.repository.Repository
+import com.droidcon.cleanrepository.domain.repository.FeedRepository
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
@@ -42,7 +42,7 @@ class DataModule {
         twitterRemoteDataSource: TwitterRemoteDataSource,
         gitHubRemoteDataSource: GitHubRemoteDataSource,
         localDataSource: LocalDataSource
-    ): Repository = RepositoryImpl(
+    ): FeedRepository = RepositoryImpl(
         twitterRemoteDataSource,
         gitHubRemoteDataSource,
         localDataSource

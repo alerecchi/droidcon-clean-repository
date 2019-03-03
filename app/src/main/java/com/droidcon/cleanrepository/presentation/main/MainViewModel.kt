@@ -1,7 +1,7 @@
 package com.droidcon.cleanrepository.presentation.main
 
 import androidx.lifecycle.MutableLiveData
-import com.droidcon.cleanrepository.domain.repository.Repository
+import com.droidcon.cleanrepository.domain.repository.FeedRepository
 import com.droidcon.cleanrepository.kx.bindToLifecycle
 import com.droidcon.cleanrepository.mapper.asUIModel
 import com.droidcon.cleanrepository.model.UIFeedItem
@@ -10,12 +10,12 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import javax.inject.Inject
 
 class MainViewModel @Inject constructor(
-    private val repository: Repository
+    private val repository: FeedRepository
 ) : LifecycleViewModel() {
 
     init {
-        repository.bindTo(this)
         getFeeds()
+        addSubscriptionContainer(repository)
     }
 
     val feedList = MutableLiveData<List<UIFeedItem>>()
@@ -24,13 +24,14 @@ class MainViewModel @Inject constructor(
         repository.getFeed()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
-                { list ->
-                    feedList.value = list.map { it.asUIModel() }
-                },
-                {
-
-                })
+                { list -> feedList.value = list.map { it.asUIModel() } },
+                {})
             .bindToLifecycle(this)
     }
+
+    fun refreshFeeds() {
+        repository.refreshFeed()
+    }
+
 
 }
