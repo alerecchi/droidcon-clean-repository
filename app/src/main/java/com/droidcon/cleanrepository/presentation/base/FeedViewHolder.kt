@@ -1,4 +1,4 @@
-package com.droidcon.cleanrepository.presentation.main
+package com.droidcon.cleanrepository.presentation.base
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
@@ -8,7 +8,7 @@ import com.droidcon.cleanrepository.model.UIFeedItem
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.list_item.*
 
-class ActivityViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView), LayoutContainer {
+class FeedViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView), LayoutContainer {
 
     fun bind(model: UIFeedItem) {
         Glide.with(itemView.context)

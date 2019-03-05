@@ -1,6 +1,9 @@
 package com.droidcon.cleanrepository.data.persistence.dao
 
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
 import com.droidcon.cleanrepository.data.model.local.RoomFeed
 import io.reactivex.Flowable
 
@@ -10,8 +13,8 @@ interface RoomFeedDao {
     @Query("SELECT * FROM feed ORDER BY date desc")
     fun getFeed(): Flowable<List<RoomFeed>>
 
-    @Delete
-    fun deleteFeed(feed: RoomFeed)
+    @Query("DELETE FROM feed")
+    fun deleteAll()
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insertFeed(feed: RoomFeed)

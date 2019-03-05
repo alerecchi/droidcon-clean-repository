@@ -11,20 +11,20 @@ import io.reactivex.Single
 import io.reactivex.functions.BiFunction
 import javax.inject.Inject
 
-class RepositoryImpl @Inject constructor(
+class DoubleRepository @Inject constructor(
     private val twitterRemoteDataSource: TwitterRemoteDataSource,
     private val gitHubRemoteDataSource: GitHubRemoteDataSource,
-    private val localDataSource: LocalDataSource
+    private val roomLocalDataSource: LocalDataSource
 ) : FeedRepository() {
 
     override fun getFeed(): Flowable<List<Feed>> {
         refreshFeed()
-        return localDataSource.getFeed()
+        return roomLocalDataSource.getFeed()
     }
 
     override fun refreshFeed() {
         Single.zip(
-            twitterRemoteDataSource.getJakeTimeline(),
+            twitterRemoteDataSource.getTimeline(),
             gitHubRemoteDataSource.getPage(),
             BiFunction<List<Feed>, List<Feed>, List<Feed>> { twitterFeeds, githubFeeds ->
                 twitterFeeds
@@ -32,7 +32,7 @@ class RepositoryImpl @Inject constructor(
                     .sortedBy { it.date }
             })
             .subscribe({
-                localDataSource.insertFeeds(it)
+                roomLocalDataSource.insertFeeds(it)
             }, {
                 it.printStackTrace()
             }).bindToLifecycle(this)

@@ -2,14 +2,15 @@ package com.droidcon.cleanrepository.di.module
 
 import android.content.Context
 import androidx.room.Room
-import com.droidcon.cleanrepository.data.datasource.GitHubRemoteDataSource
-import com.droidcon.cleanrepository.data.datasource.LocalDataSource
-import com.droidcon.cleanrepository.data.datasource.TwitterRemoteDataSource
+import com.droidcon.cleanrepository.data.datasource.GitHubDataSource
+import com.droidcon.cleanrepository.data.datasource.RoomDataSource
+import com.droidcon.cleanrepository.data.datasource.TwitterDataSource
 import com.droidcon.cleanrepository.data.persistence.AppDatabase
-import com.droidcon.cleanrepository.data.repository.RepositoryImpl
+import com.droidcon.cleanrepository.data.repository.DoubleRepository
+import com.droidcon.cleanrepository.data.repository.PaginatedRepository
+import com.droidcon.cleanrepository.data.repository.SingleRepository
 import com.droidcon.cleanrepository.data.service.GithubService
 import com.droidcon.cleanrepository.data.service.TwitterService
-import com.droidcon.cleanrepository.domain.repository.FeedRepository
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
@@ -36,16 +37,24 @@ class DataModule {
     @Provides
     internal fun providesDatabaseDao(database: AppDatabase) = database.feedDao()
 
-    @Singleton
     @Provides
-    internal fun providesRepository(
-        twitterRemoteDataSource: TwitterRemoteDataSource,
-        gitHubRemoteDataSource: GitHubRemoteDataSource,
-        localDataSource: LocalDataSource
-    ): FeedRepository = RepositoryImpl(
-        twitterRemoteDataSource,
-        gitHubRemoteDataSource,
-        localDataSource
-    )
+    internal fun providesSingleRepository(
+        twitterDataSource: TwitterDataSource,
+        roomDataSource: RoomDataSource
+    ): SingleRepository = SingleRepository(twitterDataSource, roomDataSource)
+
+    @Provides
+    internal fun providesDoubleRepository(
+        twitterDataSource: TwitterDataSource,
+        gitHubDataSource: GitHubDataSource,
+        roomDataSource: RoomDataSource
+    ): DoubleRepository = DoubleRepository(twitterDataSource, gitHubDataSource, roomDataSource)
+
+
+    @Provides
+    internal fun providesPaginatedRepository(
+        twitterDataSource: TwitterDataSource,
+        roomDataSource: RoomDataSource
+    ): PaginatedRepository = PaginatedRepository(twitterDataSource, roomDataSource)
 
 }

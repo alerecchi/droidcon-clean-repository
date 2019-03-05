@@ -1,4 +1,4 @@
-package com.droidcon.cleanrepository.presentation.main
+package com.droidcon.cleanrepository.presentation.base
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import com.droidcon.cleanrepository.R
 import com.droidcon.cleanrepository.model.UIFeedItem
 
-class ActivitiesAdapter: ListAdapter<UIFeedItem, ActivityViewHolder>(ItemCallBack()) {
+class FeedAdapter : ListAdapter<UIFeedItem, FeedViewHolder>(ItemCallBack()) {
 
     class ItemCallBack : DiffUtil.ItemCallback<UIFeedItem>() {
         override fun areItemsTheSame(oldItem: UIFeedItem, newItem: UIFeedItem): Boolean { //TODO: Check this
@@ -19,12 +19,12 @@ class ActivitiesAdapter: ListAdapter<UIFeedItem, ActivityViewHolder>(ItemCallBac
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ActivityViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FeedViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
-        return ActivityViewHolder(view)
+        return FeedViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: ActivityViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: FeedViewHolder, position: Int) {
         holder.bind(getItem(position))
     }
 }

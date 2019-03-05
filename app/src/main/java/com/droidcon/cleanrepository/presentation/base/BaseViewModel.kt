@@ -1,17 +1,13 @@
-package com.droidcon.cleanrepository.presentation.main
+package com.droidcon.cleanrepository.presentation.base
 
 import androidx.lifecycle.MutableLiveData
 import com.droidcon.cleanrepository.domain.repository.FeedRepository
 import com.droidcon.cleanrepository.kx.bindToLifecycle
 import com.droidcon.cleanrepository.mapper.asUIModel
 import com.droidcon.cleanrepository.model.UIFeedItem
-import com.droidcon.cleanrepository.presentation.LifecycleViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
-import javax.inject.Inject
 
-class MainViewModel @Inject constructor(
-    private val repository: FeedRepository
-) : LifecycleViewModel() {
+abstract class BaseViewModel constructor(private val repository: FeedRepository) : LifecycleViewModel() {
 
     init {
         getFeeds()

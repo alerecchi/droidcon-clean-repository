@@ -1,4 +1,4 @@
-package com.droidcon.cleanrepository.presentation.main
+package com.droidcon.cleanrepository.presentation.base
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,16 +13,13 @@ import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.main_fragment.*
 import javax.inject.Inject
 
-class MainFragment : DaggerFragment() {
+abstract class BaseFragment : DaggerFragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-    private lateinit var mainViewModel: MainViewModel
-    lateinit var adapter: ActivitiesAdapter
+    private lateinit var baseViewModel: BaseViewModel
+    private lateinit var adapter: FeedAdapter
 
-    companion object {
-        fun newInstance() = MainFragment()
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         return inflater.inflate(R.layout.main_fragment, container, false)
@@ -30,17 +27,19 @@ class MainFragment : DaggerFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter = ActivitiesAdapter()
+        adapter = FeedAdapter()
         activitiesList.adapter = adapter
         activitiesList.layoutManager = LinearLayoutManager(context)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        mainViewModel = viewModel(viewModelFactory)
-        mainViewModel.feedList.observe(this) {
+        baseViewModel = viewModel(viewModelFactory)
+        baseViewModel.feedList.observe(this) {
             adapter.submitList(it)
         }
     }
+
+    abstract fun getViewModel(): BaseViewModel
 
 }

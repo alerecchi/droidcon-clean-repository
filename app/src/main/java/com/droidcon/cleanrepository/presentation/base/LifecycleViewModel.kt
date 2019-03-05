@@ -1,4 +1,4 @@
-package com.droidcon.cleanrepository.presentation
+package com.droidcon.cleanrepository.presentation.base
 
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner

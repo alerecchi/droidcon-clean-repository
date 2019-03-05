@@ -1,8 +1,8 @@
-package com.droidcon.cleanrepository.presentation.main
+package com.droidcon.cleanrepository.presentation
 
 import android.os.Bundle
 import com.droidcon.cleanrepository.R
-import com.droidcon.cleanrepository.presentation.BaseActivity
+import com.droidcon.cleanrepository.presentation.base.BaseActivity
 
 class MainActivity : BaseActivity() {
 
@@ -12,7 +12,7 @@ class MainActivity : BaseActivity() {
         setContentView(R.layout.main_activity)
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.container, MainFragment.newInstance())
+                .replace(R.id.container, MenuFragment.newInstance())
                 .commitNow()
         }
     }
