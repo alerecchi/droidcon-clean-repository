@@ -45,4 +45,6 @@ dependencies {
     kapt deps.androidx.room.compiler
     api deps.androidx.room.runtime
     api deps.androidx.room.rxjava2
+    api deps.androidx.paging.runtime
+    api deps.androidx.paging.rxjava2
 }

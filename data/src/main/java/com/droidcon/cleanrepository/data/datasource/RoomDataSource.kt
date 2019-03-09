@@ -1,5 +1,6 @@
 package com.droidcon.cleanrepository.data.datasource
 
+import androidx.paging.DataSource
 import com.droidcon.cleanrepository.data.mapper.asDomainModel
 import com.droidcon.cleanrepository.data.mapper.asLocalDataModel
 import com.droidcon.cleanrepository.data.persistence.dao.RoomFeedDao
@@ -17,5 +18,9 @@ class RoomDataSource @Inject constructor(private val feedDao: RoomFeedDao) : Loc
 
     override fun insertFeeds(list: List<Feed>) {
         feedDao.insertFeedList(list.map { it.asLocalDataModel() })
+    }
+
+    override fun getPaginatedFeeds(): DataSource.Factory<Int, Feed> {
+        return feedDao.getAllPaged().map { it.asDomainModel() }
     }
 }

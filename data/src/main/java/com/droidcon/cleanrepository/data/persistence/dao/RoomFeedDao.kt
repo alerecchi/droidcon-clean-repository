@@ -1,5 +1,6 @@
 package com.droidcon.cleanrepository.data.persistence.dao
 
+import androidx.paging.DataSource
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -12,6 +13,9 @@ interface RoomFeedDao {
 
     @Query("SELECT * FROM feed ORDER BY date desc")
     fun getFeed(): Flowable<List<RoomFeed>>
+
+    @Query("SELECT * FROM feed")
+    fun getAllPaged(): DataSource.Factory<Int, RoomFeed>
 
     @Query("DELETE FROM feed")
     fun deleteAll()
