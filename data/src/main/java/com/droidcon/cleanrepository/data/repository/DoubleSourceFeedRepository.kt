@@ -11,7 +11,7 @@ import io.reactivex.Single
 import io.reactivex.functions.BiFunction
 import javax.inject.Inject
 
-class DoubleRepository @Inject constructor(
+class DoubleSourceFeedRepository @Inject constructor(
     private val twitterRemoteDataSource: TwitterRemoteDataSource,
     private val gitHubRemoteDataSource: GitHubRemoteDataSource,
     private val roomLocalDataSource: LocalDataSource
