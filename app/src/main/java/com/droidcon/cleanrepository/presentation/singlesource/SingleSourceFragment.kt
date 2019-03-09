@@ -9,6 +9,6 @@ class SingleSourceFragment : BaseFragment() {
         fun newInstance() = SingleSourceFragment()
     }
 
-    override fun getViewModel(): SingleSourceFeedViewModel = viewModel(viewModelFactory)
+    override fun getViewModel(): SingleViewModel = viewModel(viewModelFactory)
 
 }

@@ -6,9 +6,9 @@ import com.droidcon.cleanrepository.data.datasource.GitHubDataSource
 import com.droidcon.cleanrepository.data.datasource.RoomDataSource
 import com.droidcon.cleanrepository.data.datasource.TwitterDataSource
 import com.droidcon.cleanrepository.data.persistence.AppDatabase
-import com.droidcon.cleanrepository.data.repository.DoubleSourceFeedRepository
+import com.droidcon.cleanrepository.data.repository.DoubleRepository
 import com.droidcon.cleanrepository.data.repository.PaginatedRepository
-import com.droidcon.cleanrepository.data.repository.SingleSourceFeedRepository
+import com.droidcon.cleanrepository.data.repository.SingleRepository
 import com.droidcon.cleanrepository.data.service.GithubService
 import com.droidcon.cleanrepository.data.service.TwitterService
 import dagger.Module
@@ -41,14 +41,14 @@ class DataModule {
     internal fun providesSingleRepository(
         twitterDataSource: TwitterDataSource,
         roomDataSource: RoomDataSource
-    ): SingleSourceFeedRepository = SingleSourceFeedRepository(twitterDataSource, roomDataSource)
+    ): SingleRepository = SingleRepository(twitterDataSource, roomDataSource)
 
     @Provides
     internal fun providesDoubleRepository(
         twitterDataSource: TwitterDataSource,
         gitHubDataSource: GitHubDataSource,
         roomDataSource: RoomDataSource
-    ): DoubleSourceFeedRepository = DoubleSourceFeedRepository(twitterDataSource, gitHubDataSource, roomDataSource)
+    ): DoubleRepository = DoubleRepository(twitterDataSource, gitHubDataSource, roomDataSource)
 
 
     @Provides

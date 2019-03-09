@@ -17,7 +17,7 @@ abstract class BaseFragment : DaggerFragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-    private lateinit var feedViewModel: BaseFeedViewModel
+    private lateinit var baseViewModel: BaseViewModel
     private lateinit var adapter: FeedAdapter
 
 
@@ -34,12 +34,12 @@ abstract class BaseFragment : DaggerFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        feedViewModel = viewModel(viewModelFactory)
-        feedViewModel.feedList.observe(this) {
+        baseViewModel = viewModel(viewModelFactory)
+        baseViewModel.feedList.observe(this) {
             adapter.submitList(it)
         }
     }
 
-    abstract fun getViewModel(): BaseFeedViewModel
+    abstract fun getViewModel(): BaseViewModel
 
 }
