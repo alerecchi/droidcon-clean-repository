@@ -7,8 +7,8 @@ import com.droidcon.cleanrepository.data.datasource.LocalDataSourceImpl
 import com.droidcon.cleanrepository.data.datasource.TwitterDataSourceImpl
 import com.droidcon.cleanrepository.data.persistence.AppDatabase
 import com.droidcon.cleanrepository.data.repository.DoubleRepository
+import com.droidcon.cleanrepository.data.repository.PagedRepositoryImpl
 import com.droidcon.cleanrepository.data.repository.SingleRepositoryImpl
-import com.droidcon.cleanrepository.data.repository.pagedRepositoryImpl
 import com.droidcon.cleanrepository.data.service.GithubService
 import com.droidcon.cleanrepository.data.service.TwitterService
 import com.droidcon.cleanrepository.domain.repository.FeedRepository
@@ -60,6 +60,6 @@ class DataModule {
     fun providesPagedRepository(
         twitterDataSource: TwitterDataSourceImpl,
         roomDataSource: LocalDataSourceImpl
-    ): PagedRepository = pagedRepositoryImpl(twitterDataSource, roomDataSource)
+    ): PagedRepository = PagedRepositoryImpl(twitterDataSource, roomDataSource)
 
 }

@@ -1,10 +1,10 @@
 package com.droidcon.cleanrepository.data
 
 import androidx.paging.PagedList
-import com.droidcon.cleanrepository.data.repository.pagedRepositoryImpl
+import com.droidcon.cleanrepository.data.repository.PagedRepositoryImpl
 import com.droidcon.cleanrepository.domain.model.Feed
 
-class FeedBoundaryCallback constructor(private val pagedRepository: pagedRepositoryImpl) :
+class FeedBoundaryCallback constructor(private val pagedRepository: PagedRepositoryImpl) :
     PagedList.BoundaryCallback<Feed>() {
 
     override fun onZeroItemsLoaded() {

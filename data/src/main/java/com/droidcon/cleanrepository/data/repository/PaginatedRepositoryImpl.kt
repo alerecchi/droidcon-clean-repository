@@ -11,7 +11,7 @@ import com.droidcon.cleanrepository.domain.model.Feed
 import com.droidcon.cleanrepository.domain.repository.PagedRepository
 import javax.inject.Inject
 
-class pagedRepositoryImpl @Inject constructor(
+class PagedRepositoryImpl @Inject constructor(
     private val twitterRemoteDataSource: TwitterDataSource,
     private val roomLocalDataSource: LocalDataSource
 ) : PagedRepository() {
