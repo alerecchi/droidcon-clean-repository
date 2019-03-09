@@ -30,5 +30,4 @@ dependencies {
     kapt deps.androidx.lifecycle.compiler
     api deps.androidx.lifecycle.extensions
     api deps.androidx.paging.runtime
-    api deps.androidx.paging.rxjava2 //Paging has to be here for Datasource.Factory return type of the PagedRepository
 }

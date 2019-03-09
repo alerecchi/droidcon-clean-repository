@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "feed")
-class RoomFeed(
+data class RoomFeed(
     @PrimaryKey
     val feedId: String,
     @ColumnInfo(name = "image")

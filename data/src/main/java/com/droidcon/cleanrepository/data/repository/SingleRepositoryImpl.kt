@@ -1,15 +1,15 @@
 package com.droidcon.cleanrepository.data.repository
 
 import com.droidcon.cleanrepository.data.datasource.LocalDataSource
-import com.droidcon.cleanrepository.data.datasource.TwitterRemoteDataSource
+import com.droidcon.cleanrepository.data.datasource.TwitterDataSource
 import com.droidcon.cleanrepository.data.kx.bindToLifecycle
 import com.droidcon.cleanrepository.domain.model.Feed
 import com.droidcon.cleanrepository.domain.repository.FeedRepository
 import io.reactivex.Flowable
 import javax.inject.Inject
 
-class SingleRepository @Inject constructor(
-    private val twitterRemoteDataSource: TwitterRemoteDataSource,
+class SingleRepositoryImpl @Inject constructor(
+    private val twitterRemoteDataSource: TwitterDataSource,
     private val roomLocalDataSource: LocalDataSource
 ) : FeedRepository() {
 

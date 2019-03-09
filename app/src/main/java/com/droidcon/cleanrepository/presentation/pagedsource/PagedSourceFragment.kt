@@ -1,4 +1,4 @@
-package com.droidcon.cleanrepository.presentation.paginatedsource
+package com.droidcon.cleanrepository.presentation.pagedsource
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,15 +13,15 @@ import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.main_fragment.*
 import javax.inject.Inject
 
-class PaginatedSourceFragment : DaggerFragment() {
+class PagedSourceFragment : DaggerFragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-    private lateinit var baseViewModel: PaginatedViewModel
+    private lateinit var pagedViewModel: PagedViewModel
     private lateinit var adapter: PagedFeedAdapter
 
     companion object {
-        fun newInstance() = PaginatedSourceFragment()
+        fun newInstance() = PagedSourceFragment()
     }
 
 
@@ -38,8 +38,8 @@ class PaginatedSourceFragment : DaggerFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        baseViewModel = viewModel(viewModelFactory)
-        baseViewModel.paginatedFeed.observe(this) {
+        pagedViewModel = viewModel(viewModelFactory)
+        pagedViewModel.pagedFeed.observe(this) {
             adapter.submitList(it)
         }
     }

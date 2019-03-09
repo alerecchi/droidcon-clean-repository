@@ -1,4 +1,4 @@
-package com.droidcon.cleanrepository.di.scope
+package com.droidcon.cleanrepository.di.qualifier
 
 import androidx.lifecycle.ViewModel
 import dagger.MapKey

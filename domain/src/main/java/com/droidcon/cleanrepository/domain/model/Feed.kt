@@ -2,7 +2,7 @@ package com.droidcon.cleanrepository.domain.model
 
 import java.util.*
 
-class Feed(
+data class Feed(
     val id: String,
     val image: String,
     val name: String,

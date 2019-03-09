@@ -1,8 +1,8 @@
 package com.droidcon.cleanrepository.data.repository
 
-import com.droidcon.cleanrepository.data.datasource.GitHubRemoteDataSource
+import com.droidcon.cleanrepository.data.datasource.GitHubDataSource
 import com.droidcon.cleanrepository.data.datasource.LocalDataSource
-import com.droidcon.cleanrepository.data.datasource.TwitterRemoteDataSource
+import com.droidcon.cleanrepository.data.datasource.TwitterDataSource
 import com.droidcon.cleanrepository.data.kx.bindToLifecycle
 import com.droidcon.cleanrepository.domain.model.Feed
 import com.droidcon.cleanrepository.domain.repository.FeedRepository
@@ -12,8 +12,8 @@ import io.reactivex.functions.BiFunction
 import javax.inject.Inject
 
 class DoubleRepository @Inject constructor(
-    private val twitterRemoteDataSource: TwitterRemoteDataSource,
-    private val gitHubRemoteDataSource: GitHubRemoteDataSource,
+    private val twitterRemoteDataSource: TwitterDataSource,
+    private val gitHubRemoteDataSource: GitHubDataSource,
     private val roomLocalDataSource: LocalDataSource
 ) : FeedRepository() {
 

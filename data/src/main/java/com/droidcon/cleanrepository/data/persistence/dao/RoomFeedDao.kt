@@ -14,7 +14,7 @@ interface RoomFeedDao {
     @Query("SELECT * FROM feed ORDER BY date desc")
     fun getFeed(): Flowable<List<RoomFeed>>
 
-    @Query("SELECT * FROM feed")
+    @Query("SELECT * FROM feed ORDER BY date desc")
     fun getAllPaged(): DataSource.Factory<Int, RoomFeed>
 
     @Query("DELETE FROM feed")

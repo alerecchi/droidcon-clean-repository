@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import com.droidcon.cleanrepository.R
 import com.droidcon.cleanrepository.data.persistence.dao.RoomFeedDao
 import com.droidcon.cleanrepository.presentation.doublesource.DoubleSourceFragment
-import com.droidcon.cleanrepository.presentation.paginatedsource.PaginatedSourceFragment
+import com.droidcon.cleanrepository.presentation.pagedsource.PagedSourceFragment
 import com.droidcon.cleanrepository.presentation.singlesource.SingleSourceFragment
 import dagger.android.support.DaggerFragment
 import io.reactivex.Single
@@ -64,13 +64,13 @@ class MenuFragment : DaggerFragment() {
                 ?.commit()
         }
 
-        paginatedSourceButton.setOnClickListener {
+        pagedSourceButton.setOnClickListener {
             activity?.supportFragmentManager
                 ?.beginTransaction()
                 ?.addToBackStack(null)
                 ?.replace(
                     R.id.container,
-                    PaginatedSourceFragment.newInstance()
+                    PagedSourceFragment.newInstance()
                 )
                 ?.commit()
         }

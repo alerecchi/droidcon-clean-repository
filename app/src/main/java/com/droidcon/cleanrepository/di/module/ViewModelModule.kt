@@ -3,9 +3,9 @@ package com.droidcon.cleanrepository.di.module
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.droidcon.cleanrepository.di.provider.ViewModelFactory
-import com.droidcon.cleanrepository.di.scope.ViewModelKey
+import com.droidcon.cleanrepository.di.qualifier.ViewModelKey
 import com.droidcon.cleanrepository.presentation.doublesource.DoubleViewModel
-import com.droidcon.cleanrepository.presentation.paginatedsource.PaginatedViewModel
+import com.droidcon.cleanrepository.presentation.pagedsource.PagedViewModel
 import com.droidcon.cleanrepository.presentation.singlesource.SingleViewModel
 import dagger.Binds
 import dagger.Module
@@ -29,7 +29,7 @@ abstract class ViewModelModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(PaginatedViewModel::class)
-    abstract fun bindsPaginatedViewModel(paginatedViewModel: PaginatedViewModel): ViewModel
+    @ViewModelKey(PagedViewModel::class)
+    abstract fun bindspagedViewModel(pagedViewModel: PagedViewModel): ViewModel
 
 }

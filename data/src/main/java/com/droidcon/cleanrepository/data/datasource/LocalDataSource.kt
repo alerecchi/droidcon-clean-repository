@@ -10,5 +10,5 @@ interface LocalDataSource {
 
     fun insertFeeds(list: List<Feed>)
 
-    fun getPaginatedFeeds(): DataSource.Factory<Int, Feed>
+    fun getPagedFeeds(): DataSource.Factory<Int, Feed>
 }

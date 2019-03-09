@@ -2,15 +2,19 @@ package com.droidcon.cleanrepository.di.module
 
 import android.content.Context
 import androidx.room.Room
-import com.droidcon.cleanrepository.data.datasource.GitHubDataSource
-import com.droidcon.cleanrepository.data.datasource.RoomDataSource
-import com.droidcon.cleanrepository.data.datasource.TwitterDataSource
+import com.droidcon.cleanrepository.data.datasource.GitHubDataSourceImpl
+import com.droidcon.cleanrepository.data.datasource.LocalDataSourceImpl
+import com.droidcon.cleanrepository.data.datasource.TwitterDataSourceImpl
 import com.droidcon.cleanrepository.data.persistence.AppDatabase
 import com.droidcon.cleanrepository.data.repository.DoubleRepository
-import com.droidcon.cleanrepository.data.repository.PaginatedRepository
-import com.droidcon.cleanrepository.data.repository.SingleRepository
+import com.droidcon.cleanrepository.data.repository.SingleRepositoryImpl
+import com.droidcon.cleanrepository.data.repository.pagedRepositoryImpl
 import com.droidcon.cleanrepository.data.service.GithubService
 import com.droidcon.cleanrepository.data.service.TwitterService
+import com.droidcon.cleanrepository.domain.repository.FeedRepository
+import com.droidcon.cleanrepository.domain.repository.PagedRepository
+import com.hm.goe.base.di.qualifier.Double
+import com.hm.goe.base.di.qualifier.Single
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
@@ -21,40 +25,41 @@ class DataModule {
 
     @Singleton
     @Provides
-    internal fun providesGithubService(retrofit: Retrofit) = retrofit.create(GithubService::class.java)
+    fun providesGithubService(retrofit: Retrofit) = retrofit.create(GithubService::class.java)
 
     @Singleton
     @Provides
-    internal fun providesTwitterService(retrofit: Retrofit) = retrofit.create(TwitterService::class.java)
+    fun providesTwitterService(retrofit: Retrofit) = retrofit.create(TwitterService::class.java)
 
     @Singleton
     @Provides
-    internal fun providesDatabase(context: Context): AppDatabase {
+    fun providesDatabase(context: Context): AppDatabase {
         return Room.databaseBuilder(context, AppDatabase::class.java, "jake-database").build()
     }
 
     @Singleton
     @Provides
-    internal fun providesDatabaseDao(database: AppDatabase) = database.feedDao()
+    fun providesDatabaseDao(database: AppDatabase) = database.feedDao()
 
     @Provides
-    internal fun providesSingleRepository(
-        twitterDataSource: TwitterDataSource,
-        roomDataSource: RoomDataSource
-    ): SingleRepository = SingleRepository(twitterDataSource, roomDataSource)
+    @Single
+    fun providesSingleRepository(
+        twitterDataSource: TwitterDataSourceImpl,
+        roomDataSource: LocalDataSourceImpl
+    ): FeedRepository = SingleRepositoryImpl(twitterDataSource, roomDataSource)
 
     @Provides
-    internal fun providesDoubleRepository(
-        twitterDataSource: TwitterDataSource,
-        gitHubDataSource: GitHubDataSource,
-        roomDataSource: RoomDataSource
-    ): DoubleRepository = DoubleRepository(twitterDataSource, gitHubDataSource, roomDataSource)
-
+    @Double
+    fun providesDoubleRepository(
+        twitterDataSource: TwitterDataSourceImpl,
+        gitHubDataSource: GitHubDataSourceImpl,
+        roomDataSource: LocalDataSourceImpl
+    ): FeedRepository = DoubleRepository(twitterDataSource, gitHubDataSource, roomDataSource)
 
     @Provides
-    internal fun providesPaginatedRepository(
-        twitterDataSource: TwitterDataSource,
-        roomDataSource: RoomDataSource
-    ): PaginatedRepository = PaginatedRepository(twitterDataSource, roomDataSource)
+    fun providesPagedRepository(
+        twitterDataSource: TwitterDataSourceImpl,
+        roomDataSource: LocalDataSourceImpl
+    ): PagedRepository = pagedRepositoryImpl(twitterDataSource, roomDataSource)
 
 }
