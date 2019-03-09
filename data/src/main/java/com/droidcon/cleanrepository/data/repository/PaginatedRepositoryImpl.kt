@@ -3,7 +3,6 @@ package com.droidcon.cleanrepository.data.repository
 import androidx.lifecycle.LiveData
 import androidx.paging.PagedList
 import androidx.paging.toLiveData
-import com.droidcon.cleanrepository.data.FeedBoundaryCallback
 import com.droidcon.cleanrepository.data.datasource.LocalDataSource
 import com.droidcon.cleanrepository.data.datasource.TwitterDataSource
 import com.droidcon.cleanrepository.data.kx.bindToLifecycle
@@ -24,7 +23,12 @@ class PagedRepositoryImpl @Inject constructor(
     override fun getPagedFeed(): LiveData<PagedList<Feed>> {
         return roomLocalDataSource.getPagedFeeds().toLiveData(
             config,
-            boundaryCallback = FeedBoundaryCallback(this)
+            boundaryCallback = object : PagedList.BoundaryCallback<Feed>() {
+                override fun onZeroItemsLoaded() = fetchNextFeed()
+
+                override fun onItemAtEndLoaded(itemAtEnd: Feed) =
+                    fetchNextFeed(itemAtEnd.id.split("_")[1].toLong())
+            }
         )
     }
 
