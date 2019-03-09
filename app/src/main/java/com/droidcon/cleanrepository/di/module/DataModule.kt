@@ -15,11 +15,11 @@ class DataModule {
 
     @Singleton
     @Provides
-    fun providesGithubService(retrofit: Retrofit) = retrofit.create(GithubService::class.java)
+    fun providesGithubService(retrofit: Retrofit): GithubService = retrofit.create(GithubService::class.java)
 
     @Singleton
     @Provides
-    fun providesTwitterService(retrofit: Retrofit) = retrofit.create(TwitterService::class.java)
+    fun providesTwitterService(retrofit: Retrofit): TwitterService = retrofit.create(TwitterService::class.java)
 
     @Singleton
     @Provides
