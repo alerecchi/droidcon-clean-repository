@@ -9,5 +9,5 @@ class DoubleSourceFragment : BaseFragment() {
         fun newInstance() = DoubleSourceFragment()
     }
 
-    override fun getViewModel(): DoubleViewModel = viewModel(viewModelFactory)
+    override fun getViewModel(): DoubleFeedViewModel = viewModel(viewModelFactory)
 }

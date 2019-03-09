@@ -7,7 +7,7 @@ import com.droidcon.cleanrepository.mapper.asUIModel
 import com.droidcon.cleanrepository.model.UIFeedItem
 import io.reactivex.android.schedulers.AndroidSchedulers
 
-abstract class BaseViewModel constructor(private val repository: FeedRepository) : LifecycleViewModel() {
+abstract class BaseFeedViewModel constructor(private val repository: FeedRepository) : LifecycleViewModel() {
 
     init {
         getFeeds()
