@@ -8,8 +8,8 @@ data class UIFeedItem(
     val date: String,
     val source: Source
 ) {
-    enum class Source(val displayName: String) {
-        TWITTER("Twitter"),
-        GITHUB("GitHub")
+    enum class Source {
+        TWITTER(),
+        GITHUB()
     }
 }
