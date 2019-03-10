@@ -5,18 +5,17 @@ import android.view.ViewGroup
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import com.droidcon.cleanrepository.R
-import com.droidcon.cleanrepository.domain.model.Feed
-import com.droidcon.cleanrepository.mapper.asUIModel
+import com.droidcon.cleanrepository.model.UIFeedItem
 import com.droidcon.cleanrepository.presentation.base.FeedViewHolder
 
-class PagedFeedAdapter : PagedListAdapter<Feed, FeedViewHolder>(ItemCallBack()) {
+class PagedFeedAdapter : PagedListAdapter<UIFeedItem, FeedViewHolder>(ItemCallBack()) {
 
-    class ItemCallBack : DiffUtil.ItemCallback<Feed>() {
-        override fun areItemsTheSame(oldItem: Feed, newItem: Feed): Boolean {
+    class ItemCallBack : DiffUtil.ItemCallback<UIFeedItem>() {
+        override fun areItemsTheSame(oldItem: UIFeedItem, newItem: UIFeedItem): Boolean {
             return oldItem.id == newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: Feed, newItem: Feed): Boolean {
+        override fun areContentsTheSame(oldItem: UIFeedItem, newItem: UIFeedItem): Boolean {
             return oldItem == newItem
         }
     }
@@ -27,6 +26,6 @@ class PagedFeedAdapter : PagedListAdapter<Feed, FeedViewHolder>(ItemCallBack()) 
     }
 
     override fun onBindViewHolder(holder: FeedViewHolder, position: Int) {
-        holder.bind(getItem(position)!!.asUIModel())
+        getItem(position)?.let { holder.bind(it) }
     }
 }
