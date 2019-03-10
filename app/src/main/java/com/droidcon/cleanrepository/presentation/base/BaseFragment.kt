@@ -10,7 +10,6 @@ import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.droidcon.cleanrepository.R
 import com.droidcon.cleanrepository.domain.model.NetworkState
-import com.droidcon.cleanrepository.kx.viewModel
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.main_fragment.*
 import javax.inject.Inject
@@ -36,7 +35,7 @@ abstract class BaseFragment : DaggerFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        baseFeedViewModel = viewModel(viewModelFactory)
+        baseFeedViewModel = getViewModel()
         baseFeedViewModel.feedList.observe(this) {
             adapter.submitList(it)
         }
