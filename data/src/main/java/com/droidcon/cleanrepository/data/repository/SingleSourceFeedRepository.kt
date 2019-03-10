@@ -19,15 +19,15 @@ class SingleSourceFeedRepository @Inject constructor(
 
     override fun getFeed(): Flowable<List<Feed>> {
         refreshFeed()
+        networkState.onNext(NetworkState.LOADING)
         return roomLocalDataSource.getFeed()
+            .doOnNext { networkState.onNext(NetworkState.COMPLETED) }
     }
 
     override fun refreshFeed() {
-        networkState.onNext(NetworkState.LOADING)
         twitterRemoteDataSource.getTimeline()
             .subscribe({
                 roomLocalDataSource.insertFeeds(it)
-                networkState.onNext(NetworkState.COMPLETED)
             }, {
                 it.printStackTrace()
                 networkState.onNext(NetworkState.ERROR)

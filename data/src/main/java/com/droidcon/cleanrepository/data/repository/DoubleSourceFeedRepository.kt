@@ -23,11 +23,12 @@ class DoubleSourceFeedRepository @Inject constructor(
 
     override fun getFeed(): Flowable<List<Feed>> {
         refreshFeed()
+        networkState.onNext(NetworkState.LOADING)
         return roomLocalDataSource.getFeed()
+            .doOnNext { networkState.onNext(NetworkState.COMPLETED) }
     }
 
     override fun refreshFeed() {
-        networkState.onNext(NetworkState.LOADING)
         Single.zip(
             twitterRemoteDataSource.getTimeline(),
             gitHubRemoteDataSource.getPage(),
@@ -36,7 +37,6 @@ class DoubleSourceFeedRepository @Inject constructor(
             })
             .subscribe({
                 roomLocalDataSource.insertFeeds(it)
-                networkState.onNext(NetworkState.COMPLETED)
             }, {
                 it.printStackTrace()
                 networkState.onNext(NetworkState.ERROR)

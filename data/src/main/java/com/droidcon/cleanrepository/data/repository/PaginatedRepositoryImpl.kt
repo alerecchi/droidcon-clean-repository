@@ -31,7 +31,10 @@ class PagedRepositoryImpl @Inject constructor(
             .toLiveData(
                 config,
                 boundaryCallback = object : PagedList.BoundaryCallback<O>() {
-                    override fun onZeroItemsLoaded() = fetchNextFeed()
+                    override fun onZeroItemsLoaded() {
+                        networkState.onNext(NetworkState.LOADING)
+                        fetchNextFeed()
+                    }
 
                     override fun onItemAtEndLoaded(lastItem: O) {
                         lastFeedId?.let {
@@ -43,7 +46,6 @@ class PagedRepositoryImpl @Inject constructor(
     }
 
     override fun fetchNextFeed(lastId: Long?) {
-        networkState.onNext(NetworkState.LOADING)
         twitterRemoteDataSource.getTimeline(lastId)
             .subscribe({
                 roomLocalDataSource.insertFeeds(it)
