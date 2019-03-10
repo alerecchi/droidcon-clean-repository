@@ -12,8 +12,8 @@ import com.droidcon.cleanrepository.presentation.base.FeedViewHolder
 class PagedFeedAdapter : PagedListAdapter<Feed, FeedViewHolder>(ItemCallBack()) {
 
     class ItemCallBack : DiffUtil.ItemCallback<Feed>() {
-        override fun areItemsTheSame(oldItem: Feed, newItem: Feed): Boolean { //TODO: Check this
-            return oldItem == newItem
+        override fun areItemsTheSame(oldItem: Feed, newItem: Feed): Boolean {
+            return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(oldItem: Feed, newItem: Feed): Boolean {
