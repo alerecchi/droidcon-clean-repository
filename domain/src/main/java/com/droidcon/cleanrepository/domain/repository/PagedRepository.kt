@@ -7,7 +7,8 @@ import com.droidcon.cleanrepository.domain.model.Feed
 
 abstract class PagedRepository : SubscriptionContainer() {
 
-    abstract fun getPagedFeed(): LiveData<PagedList<Feed>>
+    abstract fun <O> getPagedFeed(mapper: (Feed) -> O): LiveData<PagedList<O>>
 
     abstract fun fetchNextFeed(lastId: Long? = null)
+
 }

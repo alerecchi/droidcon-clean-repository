@@ -20,7 +20,6 @@ class SingleSourceFeedRepository @Inject constructor(
 
     override fun refreshFeed() {
         twitterRemoteDataSource.getTimeline()
-            .map { list -> list.sortedBy { it.date } }
             .subscribe({
                 roomLocalDataSource.insertFeeds(it)
             }, {

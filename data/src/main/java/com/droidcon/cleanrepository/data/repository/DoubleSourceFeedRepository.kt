@@ -27,9 +27,7 @@ class DoubleSourceFeedRepository @Inject constructor(
             twitterRemoteDataSource.getTimeline(),
             gitHubRemoteDataSource.getPage(),
             BiFunction<List<Feed>, List<Feed>, List<Feed>> { twitterFeeds, githubFeeds ->
-                twitterFeeds
-                    .plus(githubFeeds)
-                    .sortedBy { it.date }
+                twitterFeeds.plus(githubFeeds)
             })
             .subscribe({
                 roomLocalDataSource.insertFeeds(it)
