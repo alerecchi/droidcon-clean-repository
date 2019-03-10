@@ -7,18 +7,26 @@ import com.droidcon.cleanrepository.domain.model.Feed
 import io.reactivex.Single
 import javax.inject.Inject
 
-class TwitterDataSourceImpl @Inject constructor(private val twitterService: TwitterService) : TwitterDataSource {
+open class TwitterDataSourceImpl @Inject constructor(private val twitterService: TwitterService) : TwitterDataSource {
 
     private val jakeTwitterName = "jakewharton"
-    private val pageSize = 200
 
-    override fun getTimeline(lastTweetId: Long?): Single<List<Feed>> {
+    companion object {
+        private const val DEFAULT_PAGE_SIZE = 200
+    }
+
+    override fun getTimeline(firstTweetId: Long?, lastTweetId: Long?, pageSize: Int?): Single<List<Feed>> {
         return twitterService
             .getUserTimeline(
                 auth = "Bearer ${BuildConfig.TWITTER_BEARER_TOKEN}",
                 name = jakeTwitterName,
-                totalResults = pageSize,
-                resultFromId = lastTweetId
+                totalResults =
+                if (lastTweetId != null)
+                    pageSize?.plus(1) ?: DEFAULT_PAGE_SIZE + 1
+                else
+                    pageSize ?: DEFAULT_PAGE_SIZE,
+                resultFromId = lastTweetId,
+                resultBeforeId = firstTweetId
             )
             .map {
                 if (lastTweetId != null && it.isNotEmpty()) it.subList(1, it.size)

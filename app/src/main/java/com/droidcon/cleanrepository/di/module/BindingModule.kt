@@ -2,9 +2,12 @@ package com.droidcon.cleanrepository.di.module
 
 import com.droidcon.cleanrepository.data.datasource.*
 import com.droidcon.cleanrepository.data.repository.DoubleSourceFeedRepository
-import com.droidcon.cleanrepository.data.repository.PagedRepositoryImpl
+import com.droidcon.cleanrepository.data.repository.LocalPagedRepository
+import com.droidcon.cleanrepository.data.repository.RemotePagedRepository
 import com.droidcon.cleanrepository.data.repository.SingleSourceFeedRepository
 import com.droidcon.cleanrepository.di.qualifier.Double
+import com.droidcon.cleanrepository.di.qualifier.Local
+import com.droidcon.cleanrepository.di.qualifier.Remote
 import com.droidcon.cleanrepository.di.qualifier.Single
 import com.droidcon.cleanrepository.domain.repository.FeedRepository
 import com.droidcon.cleanrepository.domain.repository.PagedRepository
@@ -16,14 +19,19 @@ abstract class BindingModule {
 
     @Binds
     @Single
-    abstract fun providesSingleRepository(singleRepository: SingleSourceFeedRepository): FeedRepository
+    abstract fun providesSingleRepository(feedRepository: SingleSourceFeedRepository): FeedRepository
 
     @Binds
     @Double
-    abstract fun providesDoubleRepository(doubleRepository: DoubleSourceFeedRepository): FeedRepository
+    abstract fun providesDoubleRepository(feedRepository: DoubleSourceFeedRepository): FeedRepository
 
     @Binds
-    abstract fun providesPagedRepository(pagedRepository: PagedRepositoryImpl): PagedRepository
+    @Local
+    abstract fun providesLocalPagedRepository(pagedRepository: LocalPagedRepository): PagedRepository
+
+    @Binds
+    @Remote
+    abstract fun providesRemotePagedRepository(pagedRepository: RemotePagedRepository): PagedRepository
 
     @Binds
     abstract fun providesTwitterDataSource(twitterDataSourceImpl: TwitterDataSourceImpl): TwitterDataSource

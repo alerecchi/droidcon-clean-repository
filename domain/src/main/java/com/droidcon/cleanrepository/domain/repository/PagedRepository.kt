@@ -9,8 +9,7 @@ import io.reactivex.subjects.PublishSubject
 
 abstract class PagedRepository : SubscriptionContainer() {
 
-    abstract val networkState: PublishSubject<NetworkState>
+    val networkState: PublishSubject<NetworkState> = PublishSubject.create()
     abstract fun <O> getPagedFeed(mapper: (Feed) -> O): LiveData<PagedList<O>>
-    abstract fun fetchNextFeed(lastId: Long? = null)
 
 }

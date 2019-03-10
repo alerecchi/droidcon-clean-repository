@@ -2,5 +2,6 @@
     <string name="app_name">Droidcon Clean Repository</string>
     <string name="single_source_text">Single Source</string>
     <string name="double_source_text">Double Source</string>
-    <string name="paged_source_text">Paged Source</string>
+    <string name="paged_source_local_text">Local Paged Source</string>
+    <string name="paged_source_remote_text">Remote Paged Source</string>
 </resources>

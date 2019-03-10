@@ -15,19 +15,35 @@ import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.main_fragment.*
 import javax.inject.Inject
 
+
 class PagedSourceFragment : DaggerFragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-    private lateinit var pagedViewModel: PagedViewModel
     private lateinit var adapter: PagedFeedAdapter
+    private lateinit var pagedType: PagedType
 
     companion object {
-        fun newInstance() = PagedSourceFragment()
+        private const val TYPE_EXTRA = "TYPE_EXTRA"
+
+        fun newInstance(pagedType: PagedType): PagedSourceFragment {
+            val fragment = PagedSourceFragment()
+            val extras = Bundle()
+            extras.putInt(TYPE_EXTRA, pagedType.ordinal)
+            fragment.arguments = extras
+            return fragment
+        }
     }
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        arguments?.let {
+            pagedType = when (it.getInt(TYPE_EXTRA)) {
+                PagedType.LOCAL.ordinal -> PagedType.LOCAL
+                PagedType.REMOTE.ordinal -> PagedType.REMOTE
+                else -> PagedType.LOCAL
+            }
+        }
         return inflater.inflate(R.layout.main_fragment, container, false)
     }
 
@@ -40,7 +56,18 @@ class PagedSourceFragment : DaggerFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        pagedViewModel = viewModel(viewModelFactory)
+
+        val pagedViewModel = when (pagedType) {
+            PagedType.LOCAL -> {
+                val pagedLocalViewModel: PagedLocalViewModel = viewModel(viewModelFactory)
+                pagedLocalViewModel
+            }
+            PagedType.REMOTE -> {
+                val pagedRemoteViewModel: PagedRemoteViewModel = viewModel(viewModelFactory)
+                pagedRemoteViewModel
+            }
+        }
+
         pagedViewModel.pagedFeed.observe(this) {
             adapter.submitList(it)
         }
@@ -53,9 +80,12 @@ class PagedSourceFragment : DaggerFragment() {
                     Toast.makeText(this.requireActivity(), "Network error. Showing cached results", Toast.LENGTH_LONG)
                         .show()
                 }
-                else -> {
-                }
             }
         }
     }
+}
+
+enum class PagedType {
+    LOCAL,
+    REMOTE
 }

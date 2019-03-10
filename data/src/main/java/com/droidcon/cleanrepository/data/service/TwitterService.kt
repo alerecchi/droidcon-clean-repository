@@ -18,7 +18,9 @@ interface TwitterService {
         @Query("count")
         totalResults: Int? = null,
         @Query("max_id")
-        resultFromId: Long? = null
+        resultFromId: Long? = null,
+        @Query("since_id")
+        resultBeforeId: Long? = null
     ): Single<List<TwitterUserTimelineItem>>
 
 }

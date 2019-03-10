@@ -5,5 +5,9 @@ import io.reactivex.Single
 
 interface TwitterDataSource {
 
-    fun getTimeline(lastTweetId: Long? = null): Single<List<Feed>>
+    fun getTimeline(
+        firstTweetId: Long? = null,
+        lastTweetId: Long? = null,
+        pageSize: Int? = null
+    ): Single<List<Feed>>
 }

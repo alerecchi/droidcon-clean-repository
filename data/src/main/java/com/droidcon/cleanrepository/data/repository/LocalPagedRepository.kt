@@ -9,10 +9,9 @@ import com.droidcon.cleanrepository.data.kx.bindToLifecycle
 import com.droidcon.cleanrepository.domain.model.Feed
 import com.droidcon.cleanrepository.domain.model.NetworkState
 import com.droidcon.cleanrepository.domain.repository.PagedRepository
-import io.reactivex.subjects.PublishSubject
 import javax.inject.Inject
 
-class PagedRepositoryImpl @Inject constructor(
+class LocalPagedRepository @Inject constructor(
     private val twitterRemoteDataSource: TwitterDataSource,
     private val roomLocalDataSource: LocalDataSource
 ) : PagedRepository() {
@@ -22,8 +21,6 @@ class PagedRepositoryImpl @Inject constructor(
         .setEnablePlaceholders(false)
         .build()
     private var lastFeedId: String? = null
-
-    override val networkState: PublishSubject<NetworkState> = PublishSubject.create()
 
     override fun <O> getPagedFeed(mapper: (Feed) -> (O)): LiveData<PagedList<O>> {
         return roomLocalDataSource.getPagedFeeds()
@@ -45,8 +42,9 @@ class PagedRepositoryImpl @Inject constructor(
             )
     }
 
-    override fun fetchNextFeed(lastId: Long?) {
-        twitterRemoteDataSource.getTimeline(lastId)
+    private fun fetchNextFeed(lastId: Long? = null) {
+        networkState.onNext(NetworkState.LOADING)
+        twitterRemoteDataSource.getTimeline(lastTweetId = lastId)
             .subscribe({
                 roomLocalDataSource.insertFeeds(it)
                 lastFeedId = it.last().id

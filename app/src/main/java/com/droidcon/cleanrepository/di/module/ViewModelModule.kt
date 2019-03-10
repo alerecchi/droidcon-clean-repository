@@ -5,7 +5,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.droidcon.cleanrepository.di.provider.ViewModelFactory
 import com.droidcon.cleanrepository.di.qualifier.ViewModelKey
 import com.droidcon.cleanrepository.presentation.doublesource.DoubleFeedViewModel
-import com.droidcon.cleanrepository.presentation.pagedsource.PagedViewModel
+import com.droidcon.cleanrepository.presentation.pagedsource.PagedLocalViewModel
+import com.droidcon.cleanrepository.presentation.pagedsource.PagedRemoteViewModel
 import com.droidcon.cleanrepository.presentation.singlesource.SingleFeedViewModel
 import dagger.Binds
 import dagger.Module
@@ -20,16 +21,21 @@ abstract class ViewModelModule {
     @Binds
     @IntoMap
     @ViewModelKey(SingleFeedViewModel::class)
-    abstract fun bindsSingleViewModel(singleViewModel: SingleFeedViewModel): ViewModel
+    abstract fun bindSingleViewModel(singleViewModel: SingleFeedViewModel): ViewModel
 
     @Binds
     @IntoMap
     @ViewModelKey(DoubleFeedViewModel::class)
-    abstract fun bindsDoubleViewModel(doubleViewModel: DoubleFeedViewModel): ViewModel
+    abstract fun bindDoubleViewModel(doubleViewModel: DoubleFeedViewModel): ViewModel
 
     @Binds
     @IntoMap
-    @ViewModelKey(PagedViewModel::class)
-    abstract fun bindspagedViewModel(pagedViewModel: PagedViewModel): ViewModel
+    @ViewModelKey(PagedLocalViewModel::class)
+    abstract fun bindPagedLocalViewModel(pagedViewModel: PagedLocalViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(PagedRemoteViewModel::class)
+    abstract fun bindPagedRemoteViewModel(pagedViewModel: PagedRemoteViewModel): ViewModel
 
 }

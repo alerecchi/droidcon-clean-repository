@@ -9,9 +9,8 @@ import com.droidcon.cleanrepository.mapper.asUIModel
 import com.droidcon.cleanrepository.model.UIFeedItem
 import com.droidcon.cleanrepository.presentation.base.LifecycleViewModel
 import io.reactivex.BackpressureStrategy
-import javax.inject.Inject
 
-class PagedViewModel @Inject constructor(pagedRepository: PagedRepository) : LifecycleViewModel() {
+abstract class PagedViewModel constructor(pagedRepository: PagedRepository) : LifecycleViewModel() {
 
     init {
         addSubscriptionContainer(pagedRepository)
