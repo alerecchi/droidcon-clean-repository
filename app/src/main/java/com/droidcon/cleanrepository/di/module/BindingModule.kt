@@ -1,13 +1,13 @@
 package com.droidcon.cleanrepository.di.module
 
 import com.droidcon.cleanrepository.data.datasource.*
-import com.droidcon.cleanrepository.data.repository.DoubleRepository
+import com.droidcon.cleanrepository.data.repository.DoubleSourceFeedRepository
 import com.droidcon.cleanrepository.data.repository.PagedRepositoryImpl
-import com.droidcon.cleanrepository.data.repository.SingleRepositoryImpl
+import com.droidcon.cleanrepository.data.repository.SingleSourceFeedRepository
+import com.droidcon.cleanrepository.di.qualifier.Double
+import com.droidcon.cleanrepository.di.qualifier.Single
 import com.droidcon.cleanrepository.domain.repository.FeedRepository
 import com.droidcon.cleanrepository.domain.repository.PagedRepository
-import com.hm.goe.base.di.qualifier.Double
-import com.hm.goe.base.di.qualifier.Single
 import dagger.Binds
 import dagger.Module
 
@@ -16,11 +16,11 @@ abstract class BindingModule {
 
     @Binds
     @Single
-    abstract fun providesSingleRepository(singleRepository: SingleRepositoryImpl): FeedRepository
+    abstract fun providesSingleRepository(singleRepository: SingleSourceFeedRepository): FeedRepository
 
     @Binds
     @Double
-    abstract fun providesDoubleRepository(doubleRepository: DoubleRepository): FeedRepository
+    abstract fun providesDoubleRepository(doubleRepository: DoubleSourceFeedRepository): FeedRepository
 
     @Binds
     abstract fun providesPagedRepository(pagedRepository: PagedRepositoryImpl): PagedRepository

@@ -8,7 +8,7 @@ import com.droidcon.cleanrepository.domain.repository.FeedRepository
 import io.reactivex.Flowable
 import javax.inject.Inject
 
-class SingleRepositoryImpl @Inject constructor(
+class SingleSourceFeedRepository @Inject constructor(
     private val twitterRemoteDataSource: TwitterDataSource,
     private val roomLocalDataSource: LocalDataSource
 ) : FeedRepository() {
