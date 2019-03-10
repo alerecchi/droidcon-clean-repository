@@ -12,7 +12,7 @@ class GitHubDataSourceImpl @Inject constructor(private val githubService: Github
 
     override fun getPage(pageNumber: Int?): Single<List<Feed>> {
         return githubService
-            .getUserTimeline(
+            .getUserEvents(
                 user = userId,
                 page = pageNumber
             ).map { list -> list.map { it.asDomainModel() } }

@@ -9,7 +9,7 @@ import retrofit2.http.Query
 interface GithubService {
 
     @GET("https://api.github.com/user/{user}/events")
-    fun getUserTimeline(
+    fun getUserEvents(
         @Path("user")
         user: String,
         @Query("page")
