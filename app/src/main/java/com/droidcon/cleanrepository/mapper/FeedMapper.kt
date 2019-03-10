@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 fun Feed.asUIModel() = UIFeedItem(
+    id = id,
     imageUrl = image,
     name = name,
     content = content,

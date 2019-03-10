@@ -10,8 +10,8 @@ import com.droidcon.cleanrepository.model.UIFeedItem
 class FeedAdapter : ListAdapter<UIFeedItem, FeedViewHolder>(ItemCallBack()) {
 
     class ItemCallBack : DiffUtil.ItemCallback<UIFeedItem>() {
-        override fun areItemsTheSame(oldItem: UIFeedItem, newItem: UIFeedItem): Boolean { //TODO: Check this
-            return oldItem == newItem
+        override fun areItemsTheSame(oldItem: UIFeedItem, newItem: UIFeedItem): Boolean {
+            return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(oldItem: UIFeedItem, newItem: UIFeedItem): Boolean {
