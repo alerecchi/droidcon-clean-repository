@@ -45,6 +45,7 @@ dependencies {
     implementation deps.androidx.recyclerview
     implementation deps.androidx.transition
     implementation deps.material
+    implementation deps.circleimageview
     implementation deps.rxandroid
     kapt deps.glide.compiler
     implementation deps.glide.glide

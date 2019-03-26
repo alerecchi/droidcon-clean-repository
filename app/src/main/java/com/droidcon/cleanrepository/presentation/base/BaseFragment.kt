@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.droidcon.cleanrepository.R
 import com.droidcon.cleanrepository.domain.model.NetworkState
@@ -31,6 +32,9 @@ abstract class BaseFragment : DaggerFragment() {
         adapter = FeedAdapter()
         activitiesList.adapter = adapter
         activitiesList.layoutManager = LinearLayoutManager(context)
+        val divider = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
+        divider.setDrawable(resources.getDrawable(R.drawable.list_divider, null))
+        activitiesList.addItemDecoration(divider)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

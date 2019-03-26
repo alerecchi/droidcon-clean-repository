@@ -7,9 +7,11 @@
 
     <Button
         android:id="@+id/singleSourceButton"
-        android:layout_width="200dp"
+        android:layout_width="0dp"
         android:layout_height="56dp"
+        android:layout_margin="16dp"
         android:text="@string/single_source_text"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@id/doubleSourceButton"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -18,10 +20,11 @@
 
     <Button
         android:id="@+id/doubleSourceButton"
-        android:layout_width="200dp"
+        android:layout_width="0dp"
         android:layout_height="56dp"
-        android:layout_marginTop="20dp"
+        android:layout_margin="16dp"
         android:text="@string/double_source_text"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@id/pagedLocalSourceButton"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -29,10 +32,11 @@
 
     <Button
         android:id="@+id/pagedLocalSourceButton"
-        android:layout_width="200dp"
+        android:layout_width="0dp"
         android:layout_height="56dp"
-        android:layout_marginTop="20dp"
+        android:layout_margin="16dp"
         android:text="@string/paged_source_local_text"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@id/pagedRemoteSourceButton"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -40,10 +44,11 @@
 
     <Button
         android:id="@+id/pagedRemoteSourceButton"
-        android:layout_width="200dp"
+        android:layout_width="0dp"
         android:layout_height="56dp"
-        android:layout_marginTop="20dp"
+        android:layout_margin="16dp"
         android:text="@string/paged_source_remote_text"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
